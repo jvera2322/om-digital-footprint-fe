@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 20 14.3% 95.9%; /* #f9f3f0 */
+    --foreground: 20 8.7% 12.4%; /* #29231f */
+
+    --card: 0 0% 100%; /* #ffffff */
+    --card-foreground: 20 8.7% 12.4%; /* #29231f */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 8.7% 12.4%;
+
+    --primary: 21 40.7% 57.8%; /* #c28566 */
+    --primary-foreground: 0 0% 100%; /* White for contrast on #c28566 */
+
+    --secondary: 20 55.6% 80.6%; /* #e7b8a3 */
+    --secondary-foreground: 20 8.7% 12.4%;
+
+    --muted: 20 20% 94.7%; /* #f9f3f0 - can be used for subtle backgrounds */
+    --muted-foreground: 20 5.1% 34.5%; /* #505050 - for less important text */
+
+    --accent: 20 55.6% 80.6%; /* #e7b8a3 */
+    --accent-foreground: 20 8.7% 12.4%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 21 40.7% 57.8%; /* #c28566 */
+
+    --radius: 0.75rem; /* From image, corners look quite rounded */
+  }
+
+  .dark {
+    --background: 20 8.7% 12.4%;
+    --foreground: 20 14.3% 95.9%;
+
+    --card: 20 6.7% 15.5%; /* #282531 or similar dark */
+    --card-foreground: 20 14.3% 95.9%;
+
+    --popover: 20 6.7% 15.5%;
+    --popover-foreground: 20 14.3% 95.9%;
+
+    --primary: 21 40.7% 57.8%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 20 55.6% 80.6%;
+    --secondary-foreground: 20 14.3% 95.9%;
+
+    --muted: 20 5.1% 20.5%; /* Darker muted */
+    --muted-foreground: 20 5.1% 64.5%;
+
+    --accent: 20 55.6% 80.6%;
+    --accent-foreground: 20 14.3% 95.9%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 20 5.9% 25%;
+    --input: 20 5.9% 25%;
+    --ring: 21 40.7% 57.8%;
+  }
+
+  /* Use direct CSS properties instead of @apply with CSS variable-based utilities */
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+      sans-serif;
+  }
+
+  /* Remove any global border rules that were causing issues */
+}
