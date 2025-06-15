@@ -6,14 +6,22 @@ import Link from "next/link"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { type AccessReportFormValues, accessReportFormSchema } from "@/lib/schemas"
-import { ChevronLeft } from "lucide-react"
-
+import { ChevronLeft, Router } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { authClient } from "@/lib/auth-client"
+
+
+
+
 
 export default function AccessReportForm() {
+
+  const router = useRouter()
+
   const form = useForm<AccessReportFormValues>({
     resolver: zodResolver(accessReportFormSchema),
     defaultValues: {
@@ -21,10 +29,18 @@ export default function AccessReportForm() {
     },
   })
 
-  function onSubmit(values: AccessReportFormValues) {
+  const onSubmit = async (values: AccessReportFormValues) => {
     console.log("Access Report Form Submitted:", values)
-    // Here you would typically send a login code
-    alert("Login code sent! Check console for details.")
+
+    const {data,error} = await authClient.emailOtp.sendVerificationOtp({
+      email: values.email,
+      type: "sign-in"
+    })
+
+    if (data?.success){
+      router.push(`${window.location.pathname}/verify-otp-code`)
+    }
+
     form.reset()
   }
 
